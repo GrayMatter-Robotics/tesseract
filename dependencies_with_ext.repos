@@ -8,9 +8,9 @@
     version: 0.3.0
 - git:
     local-name: tesseract_ext
-    uri: https://github.com/ros-industrial-consortium/tesseract_ext.git
-    version: master
+    uri: git@github.com:GrayMatter-Robotics/tesseract_ext.git
+    version: 1.0-internal
 - git:
     local-name: opw_kinematics
-    uri: https://github.com/Jmeyer1292/opw_kinematics.git
+    uri: git@github.com:GrayMatter-Robotics/opw_kinematics.git
     version: 0.5.2
