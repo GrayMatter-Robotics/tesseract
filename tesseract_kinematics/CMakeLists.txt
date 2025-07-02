@@ -83,6 +83,14 @@ if(TESSERACT_BUILD_OPW)
   add_subdirectory(opw)
 endif()
 
+# OPW_ROE
+option(TESSERACT_BUILD_OPW_ROE  "Build OPW ROE components" ON)
+if(TESSERACT_BUILD_OPW_ROE)
+  message("Building OPW ROE components")
+  list(APPEND SUPPORTED_COMPONENTS opw_roe)
+  add_subdirectory(opw_roe)
+endif()
+
 # UR
 option(TESSERACT_BUILD_UR "Build UR components" ON)
 if(TESSERACT_BUILD_UR)
@@ -104,6 +112,7 @@ if((TESSERACT_ENABLE_TESTING OR TESSERACT_KINEMATICS_ENABLE_TESTING)
    AND TESSERACT_BUILD_IKFAST
    AND TESSERACT_BUILD_KDL
    AND TESSERACT_BUILD_OPW
+   AND TESSERACT_BUILD_OPW_ROE
    AND TESSERACT_BUILD_UR)
   enable_testing()
   add_run_tests_target(ENABLE ${TESSERACT_ENABLE_RUN_TESTING})

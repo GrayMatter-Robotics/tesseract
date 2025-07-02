@@ -35,26 +35,26 @@ TESSERACT_COMMON_IGNORE_WARNINGS_POP
 
 namespace tesseract_kinematics
 {
-static const std::string OPW_INV_KIN_CHAIN_SOLVER_NAME = "OPWInvKin";
+static const std::string OPW_INV_KIN_CHAIN_SOLVER_NAME = "OPWRoeInvKin";
 
 /**@brief OPW Inverse Kinematics Implementation. */
-class OPWInvKin : public InverseKinematics
+class OPWRoeInvKin : public InverseKinematics
 {
 public:
   // LCOV_EXCL_START
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
   // LCOV_EXCL_STOP
 
-  using Ptr = std::shared_ptr<OPWInvKin>;
-  using ConstPtr = std::shared_ptr<const OPWInvKin>;
-  using UPtr = std::unique_ptr<OPWInvKin>;
-  using ConstUPtr = std::unique_ptr<const OPWInvKin>;
+  using Ptr = std::shared_ptr<OPWRoeInvKin>;
+  using ConstPtr = std::shared_ptr<const OPWRoeInvKin>;
+  using UPtr = std::unique_ptr<OPWRoeInvKin>;
+  using ConstUPtr = std::unique_ptr<const OPWRoeInvKin>;
 
-  ~OPWInvKin() override = default;
-  OPWInvKin(const OPWInvKin& other);
-  OPWInvKin& operator=(const OPWInvKin& other);
-  OPWInvKin(OPWInvKin&&) = default;
-  OPWInvKin& operator=(OPWInvKin&&) = default;
+  ~OPWRoeInvKin() override = default;
+  OPWRoeInvKin(const OPWRoeInvKin& other);
+  OPWRoeInvKin& operator=(const OPWRoeInvKin& other);
+  OPWRoeInvKin(OPWRoeInvKin&&) = default;
+  OPWRoeInvKin& operator=(OPWRoeInvKin&&) = default;
 
   /**
    * @brief Construct OPW Inverse Kinematics
@@ -64,11 +64,17 @@ public:
    * @param joint_names The joint names for the kinematic chain
    * @param solver_name The solver name of the kinematic chain
    */
-  OPWInvKin(opw_kinematics::Parameters<double> params,
-            std::string base_link_name,
-            std::string tip_link_name,
-            std::vector<std::string> joint_names,
-            std::string solver_name = OPW_INV_KIN_CHAIN_SOLVER_NAME);
+  OPWRoeInvKin(opw_kinematics::Parameters<double> params,
+               std::string base_link_name,
+               std::string tip_link_name,
+               std::vector<std::string> joint_names,
+               Eigen::Isometry3d& base_link_transform,
+               double extender_min = 0.0,
+               double extender_max = 0.0,
+               double extender_sampling_min_deviation = -1.0,
+               double extender_sampling_max_deviation = 1.0,
+               double extender_step = 0.0,
+               std::string solver_name = OPW_INV_KIN_CHAIN_SOLVER_NAME);
 
   IKSolutions calcInvKin(const tesseract_common::TransformMap& tip_link_poses,
                          const Eigen::Ref<const Eigen::VectorXd>& seed) const override final;
@@ -82,10 +88,18 @@ public:
   InverseKinematics::UPtr clone() const override final;
 
 protected:
-  opw_kinematics::Parameters<double> params_; /**< @brief The opw kinematics parameters */
-  std::string base_link_name_;                /**< @brief Link name of first link in the kinematic object */
-  std::string tip_link_name_;                 /**< @brief Link name of last kink in the kinematic object */
-  std::vector<std::string> joint_names_;      /**< @brief Joint names for the kinematic object */
+  opw_kinematics::Parameters<double> params_;      /**< @brief The opw kinematics parameters */
+  std::string base_link_name_;                     /**< @brief Link name of first link in the kinematic object */
+  std::string tip_link_name_;                      /**< @brief Link name of last kink in the kinematic object */
+  std::vector<std::string> joint_names_;           /**< @brief Joint names for the kinematic object */
+  Eigen::Isometry3d base_link_transform_;          /**< @brief Transform of the base link */
+  double extender_min_{ 0.0 };                     /**< @brief Minimum extender value */
+  double extender_max_{ 0.0 };                     /**< @brief Maximum extender value */
+  double extender_sampling_min_deviation_{ -1.0 }; /**< @brief Deviation to use for the minimum value from the central
+                                                      value */
+  double extender_sampling_max_deviation_{ 1.0 };  /**< @brief Deviation to use for the maximum value from the central
+                                                      value */
+  double extender_step_{ 0.0 };                    /**< @brief Step size for extender value */
   std::string solver_name_{ OPW_INV_KIN_CHAIN_SOLVER_NAME }; /**< @brief Name of this solver */
 };
 

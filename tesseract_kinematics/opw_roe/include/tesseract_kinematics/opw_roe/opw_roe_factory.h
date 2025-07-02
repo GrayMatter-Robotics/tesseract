@@ -31,7 +31,7 @@
 
 namespace tesseract_kinematics
 {
-class OPWInvKinFactory : public InvKinFactory
+class OPWRoeInvKinFactory : public InvKinFactory
 {
   std::unique_ptr<InverseKinematics> create(const std::string& solver_name,
                                             const tesseract_scene_graph::SceneGraph& scene_graph,
