@@ -59,8 +59,8 @@ OPWRoeInvKin::OPWRoeInvKin(opw_kinematics::Parameters<double> params,
   , extender_step_(extender_step)
   , solver_name_(std::move(solver_name))
 {
-  if (joint_names_.size() != 6)
-    throw std::runtime_error("OPWRoeInvKin, only support six joints!");
+  if (joint_names_.size() != 7)
+    throw std::runtime_error("OPWRoeInvKin, only supports seven joints!");
 }
 
 InverseKinematics::UPtr OPWRoeInvKin::clone() const { return std::make_unique<OPWRoeInvKin>(*this); }

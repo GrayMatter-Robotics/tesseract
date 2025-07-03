@@ -23,8 +23,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef TESSERACT_KINEMATICS_OPW_INV_KIN_H
-#define TESSERACT_KINEMATICS_OPW_INV_KIN_H
+#ifndef TESSERACT_KINEMATICS_OPW_ROE_INV_KIN_H
+#define TESSERACT_KINEMATICS_OPW_ROE_INV_KIN_H
 
 #include <tesseract_common/macros.h>
 TESSERACT_COMMON_IGNORE_WARNINGS_PUSH
@@ -104,4 +104,4 @@ protected:
 };
 
 }  // namespace tesseract_kinematics
-#endif  // TESSERACT_KINEMATICS_OPW_INV_KIN_H
+#endif  // TESSERACT_KINEMATICS_OPW_ROE_INV_KIN_H

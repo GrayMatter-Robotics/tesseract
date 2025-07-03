@@ -23,8 +23,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef TESSERACT_KINEMATICS_OPW_FACTORY_H
-#define TESSERACT_KINEMATICS_OPW_FACTORY_H
+#ifndef TESSERACT_KINEMATICS_OPW_ROE_FACTORY_H
+#define TESSERACT_KINEMATICS_OPW_ROE_FACTORY_H
 
 #include <tesseract_kinematics/core/kinematics_plugin_factory.h>
 #include <boost_plugin_loader/macros.h>
@@ -43,4 +43,4 @@ class OPWRoeInvKinFactory : public InvKinFactory
 PLUGIN_ANCHOR_DECL(OPWFactoriesAnchor)
 
 }  // namespace tesseract_kinematics
-#endif  // TESSERACT_KINEMATICS_OPW_FACTORY_H
+#endif  // TESSERACT_KINEMATICS_OPW_ROE_FACTORY_H
