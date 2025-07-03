@@ -90,7 +90,7 @@ public:
 protected:
   opw_kinematics::Parameters<double> params_;      /**< @brief The opw kinematics parameters */
   std::string base_link_name_;                     /**< @brief Link name of first link in the kinematic object */
-  std::string tip_link_name_;                      /**< @brief Link name of last kink in the kinematic object */
+  std::string tip_link_name_;                      /**< @brief Link name of last link in the kinematic object */
   std::vector<std::string> joint_names_;           /**< @brief Joint names for the kinematic object */
   Eigen::Isometry3d base_link_transform_;          /**< @brief Transform of the base link */
   double extender_min_{ 0.0 };                     /**< @brief Minimum extender value */
