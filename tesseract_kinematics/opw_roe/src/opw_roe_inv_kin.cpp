@@ -135,7 +135,7 @@ IKSolutions OPWRoeInvKin::calcInvKin(const tesseract_common::TransformMap& tip_l
   return solution_set;
 }
 
-Eigen::Index OPWRoeInvKin::numJoints() const { return 6; }
+Eigen::Index OPWRoeInvKin::numJoints() const { return 7; }
 
 std::vector<std::string> OPWRoeInvKin::getJointNames() const { return joint_names_; }
 std::string OPWRoeInvKin::getBaseLinkName() const { return base_link_name_; }
