@@ -278,8 +278,7 @@ IKSolutions KinematicGroup::calcInvKin(const KinGroupIKInputs& tip_link_poses,
         ordered_sol(i) = solution(inv_kin_joint_map_[static_cast<std::size_t>(i)]);
 
       tesseract_kinematics::harmonizeTowardMedian<double>(ordered_sol, redundancy_indices_, limits_.joint_limits);
-      if (tesseract_common::satisfiesLimits<double>(ordered_sol, limits_.joint_limits))
-        solutions_filtered.push_back(ordered_sol);
+      solutions_filtered.push_back(ordered_sol);
     }
 
     return solutions_filtered;
@@ -291,8 +290,7 @@ IKSolutions KinematicGroup::calcInvKin(const KinGroupIKInputs& tip_link_poses,
   for (auto& solution : solutions)
   {
     tesseract_kinematics::harmonizeTowardMedian<double>(solution, redundancy_indices_, limits_.joint_limits);
-    if (tesseract_common::satisfiesLimits<double>(solution, limits_.joint_limits))
-      solutions_filtered.push_back(solution);
+    solutions_filtered.push_back(solution);
   }
 
   return solutions_filtered;
